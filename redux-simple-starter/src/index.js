@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from '../src/components/search_bar';
+import SearchBar from './components/search_bar';
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 
