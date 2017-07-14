@@ -10,7 +10,7 @@ class PostsShow extends Component {
 
     constructor(props) {
         super(props);
-        this.onDeletePost = this.onDeletePost.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
     componentDidMount() {
@@ -18,8 +18,11 @@ class PostsShow extends Component {
         this.props.fetchPost(id);
     }
 
-    onDeletePost() {
-
+    onDeleteClick() {
+        const { id } = this.props.match.params;
+        this.props.deletePost(id, () => {
+            this.props.history.push('/');
+        });
     }
 
     render() {
@@ -37,8 +40,8 @@ class PostsShow extends Component {
                     <button
                         type="button"
                         className="btn btn-danger"
-                        onClick={this.onDeletePost}>
-                        Delete
+                        onClick={this.onDeleteClick}>
+                        Delete Post
                     </button>
                 </div>
                 <div>
@@ -64,4 +67,4 @@ function mapStateToProps({ posts }, ownProps) {
     }
 }
 
-export default connect(mapStateToProps, { fetchPost })(PostsShow);
+export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow);

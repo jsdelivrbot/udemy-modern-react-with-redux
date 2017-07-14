@@ -6,6 +6,7 @@ const API_KEY = 'KK_KEY';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export function fetchPosts() {
 
@@ -48,6 +49,21 @@ export function createPost(values, callback) {
     return {
         type: CREATE_POST,
         payload: request
+    }
+
+}
+
+export function deletePost(id, callback) {
+
+    const request = axios.delete(`${ROOT_URL}/posts/${id}`, {
+        params: {
+            key: API_KEY
+        }
+    }).then(() => callback());
+
+    return {
+        type: DELETE_POST,
+        payload: id
     }
 
 }
