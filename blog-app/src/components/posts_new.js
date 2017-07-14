@@ -3,6 +3,10 @@ import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
 
+    // Form states:
+    // pristine - no input has been touched
+    // touched - user has selected or focused a field
+    // invalid -
     renderField(field) {
         return (
             <div className="form-group">
@@ -12,14 +16,29 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                { field.meta.error }
+                {
+                    console.log({
+                        label : field.label,
+                        pristine: field.meta.pristine,
+                        touched: field.meta.touched,
+                        invalid: field.meta.invalid,
+                    })
+                }
+                { field.meta.touched ? field.meta.error : '' }
             </div>
         )
     }
 
+    onFormSubmit(values) {
+        console.log(values);
+    }
+
     render() {
+
+        const { handleSubmit } = this.props;
+
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
                 <Field
                     label="Title"
                     name="title"
@@ -35,6 +54,11 @@ class PostsNew extends Component {
                     name="content"
                     component={this.renderField}
                 />
+                <button
+                    type="submit"
+                    className="btn btn-primary">
+                    Submit
+                </button>
             </form>
         )
     }
@@ -44,13 +68,18 @@ class PostsNew extends Component {
 // This function will be called during some parts of the lifecycle of the form
 // It is passed in config object to reduxFrom
 function validate(values) {
-    console.log("Values: " + JSON.stringify(values));
     const errors = {};
 
     // Validate the inputs from 'values'
     if(!values.title) {
         errors.title = "Enter a title!";
+    } else {
+        if(values.title.length < 3) {
+            errors.title = "Title should have at least 3 !";
+        }
     }
+
+
 
     if(!values.categories) {
         errors.categories = "Enter some categories!";
