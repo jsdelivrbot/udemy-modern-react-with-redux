@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 class PostsShow extends Component {
 
@@ -32,6 +33,7 @@ class PostsShow extends Component {
         return (
             <div>
                 <div className="text-xs-right">
+                    <Link to="/" className="btn btn-primary">Back to Posts</Link>
                     <button
                         type="button"
                         className="btn btn-danger"

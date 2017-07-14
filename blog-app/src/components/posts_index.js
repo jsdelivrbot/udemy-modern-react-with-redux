@@ -15,14 +15,20 @@ class PostsIndex extends Component {
         return _.map(this.props.posts, this.renderPost);
     }
 
+    showPost(id) {
+        this.props.history.push()
+    }
+
     renderPost(post) {
         return (
-            <li key={post.id} className="list-group-item">
-                <div>Id: { post.id }</div>
-                <div>Title: { post.title }</div>
-                <div>Categories: { post.categories }</div>
-                <div>Content: { post.content }</div>
-            </li>
+            <Link to={`/posts/${post.id}`} key={post.id}>
+                <li className="list-group-item">
+                    <div>Id: { post.id }</div>
+                    <div>Title: { post.title }</div>
+                    <div>Categories: { post.categories }</div>
+                    <div>Content: { post.content }</div>
+                </li>
+            </Link>
         )
 
     }
