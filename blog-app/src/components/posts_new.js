@@ -8,8 +8,12 @@ class PostsNew extends Component {
     // touched - user has selected or focused a field
     // invalid -
     renderField(field) {
+
+        const { meta: { pristine, touched, invalid, error } } = field;
+        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
         return (
-            <div className="form-group">
+            <div className={className}>
                 <label>{field.label}</label>
                 <input
                     className="form-control"
@@ -19,12 +23,14 @@ class PostsNew extends Component {
                 {
                     console.log({
                         label : field.label,
-                        pristine: field.meta.pristine,
-                        touched: field.meta.touched,
-                        invalid: field.meta.invalid,
+                        pristine: pristine,
+                        touched: touched,
+                        invalid: invalid,
                     })
                 }
-                { field.meta.touched ? field.meta.error : '' }
+                <div className="text-help">
+                    { touched ? error : '' }
+                </div>
             </div>
         )
     }
