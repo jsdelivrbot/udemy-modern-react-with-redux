@@ -12,9 +12,7 @@ export default function(state = {}, action) {
                 [post.id]: post
             };
         case DELETE_POST:
-            return {
-
-            };
+            return _.omit(state, action.payload);
         default:
             return state;
     }
