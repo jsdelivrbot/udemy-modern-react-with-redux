@@ -44,7 +44,7 @@ class App extends Component {
                         type="text"
                         placeholder="Enter post content here..." />
                     <span className="input-group-btn">
-                        <button className="btn btn-primary" type="button">Add Post</button>
+                        <button className="btn btn-primary" type="submit">Add Post</button>
                     </span>
                 </div>
             </form>
