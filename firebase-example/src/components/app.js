@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import { PostItem } from './post_item';
+import PostItem from './post_item';
 import * as actions from '../actions/index';
 
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {}
+            post: ''
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -28,7 +29,7 @@ class App extends Component {
         event.preventDefault();
         this.props.createPost(this.state.post);
         this.setState({
-            post: {}
+            post: ''
         });
     }
 
@@ -53,22 +54,20 @@ class App extends Component {
     renderPosts() {
         return (
             <ul className="list-group">
-                { this.props.posts.map((id, post) => this.renderPost(id, post)) }
+                {
+                    _.map(this.props.posts, (post, id) => {
+                        return <PostItem id={id} key={id} post={post} />
+                    })
+                }
             </ul>
-        )
-    }
-
-    renderPost(id, post) {
-        return (
-            <PostItem key={id} post={post} />
         )
     }
 
     render() {
         return (
             <div>
-                {/*{ this.renderAddPost() }*/}
-                {/*{ this.renderPosts() }*/}
+                { this.renderAddPost() }
+                { this.renderPosts() }
             </div>
         )
     }

@@ -11,14 +11,14 @@ const INITIAL_POSTS = {
     456: 'Bet you wanted to read this'
 };
 
-export default function fetchPosts() {
+export function fetchPosts() {
     return {
         type: FETCH_POSTS,
         payload: INITIAL_POSTS
     }
 }
 
-export default function createPost() {
+export function createPost() {
     return {
         type: CREATE_POST,
         payload: {
@@ -27,14 +27,14 @@ export default function createPost() {
     }
 }
 
-export default function deletePost(id) {
+export function deletePost(id) {
     return {
         type: DELETE_POST,
         payload: id
     }
 }
 
-export default function updatePost(post) {
+export function updatePost(post) {
     return {
         type: UPDATE_POST,
         payload: {

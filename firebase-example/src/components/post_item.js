@@ -9,18 +9,21 @@ class PostItem extends Component {
         this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
-    onDeleteClick(id) {
+    onDeleteClick() {
         const id = this.props.id;
         this.props.deletePost(id);
     }
 
     render() {
 
-        const id = this.props.id;
+        const  {
+            id,
+            post
+        } = this.props;
 
         return (
-            <li key={id} className="list-group-item">
-                { this.props.post }
+            <li className="list-group-item">
+                { post }
                 <button
                     className="btn btn-danger right"
                     onClick={this.onDeleteClick}>

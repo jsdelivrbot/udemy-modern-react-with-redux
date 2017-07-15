@@ -11,7 +11,7 @@ export default function postsReducer(state = {}, action) {
         case FETCH_POSTS:
             return action.payload;
         case CREATE_POST:
-        // case UPDATE_POST:
+        case UPDATE_POST:
             return { ...state, ...action.payload };
         case DELETE_POST:
             return _.omit(state, action.payload);
