@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import PostsIndex from './components/posts_index';
+import DynamicPostsNew from './components/dynamic_posts_new';
 import PostsNew from './components/posts_new';
 import PostsShow from './components/posts_show';
 import ReduxPromise from 'redux-promise';
@@ -19,7 +20,8 @@ ReactDOM.render(
         {/*<App />*/}
         <BrowserRouter>
             <Switch>
-                <Route path='/posts/new' component={PostsNew}/>
+                {/*<Route path='/posts/new' component={PostsNew}/>*/}
+                <Route path='/posts/new' component={DynamicPostsNew}/>
                 <Route path='/posts/:id' component={PostsShow}/>
                 <Route path='/' component={PostsIndex} exact={true}/>
             </Switch>
